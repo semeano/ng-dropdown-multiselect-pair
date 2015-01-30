@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-dropdown-multiselect-semeano",
+  "name": "ng-dropdown-multiselect",
   "version": "1.5.4",
   "authors": [
     "Pedro Semeano <semeano@gmail.com>"
@@ -17,7 +17,7 @@
     "checkbox"
   ],
   "license": "MIT",
-  "main": "src/angularjs-dropdown-multiselect.js",
+  "main": "src/ng-dropdown-multiselect.js",
   "ignore": [
     ".*"
   ],
