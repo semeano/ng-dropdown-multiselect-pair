@@ -9,11 +9,22 @@
 		/* @ngInject */
 		.controller('ngDropdownMultiselectDemoCtrl', function ($scope) {
 
-			$scope.example1model = [];
-			$scope.example1data = [
+			$scope.examplemodel = [];
+			$scope.exampledata = [
 				{id: 1, label: 'David'},
 				{id: 2, label: 'Jhon'},
 				{id: 3, label: 'Danny'}];
+			$scope.examplesettings = {
+				showCheckAll: false,
+				showUncheckAll: false,
+				dynamicTitle: true,
+				smartButtonMaxItems: 3,
+				enableNewItem: true
+			};
+
+			$scope.addNewItem = function (newItem) {
+				console.log(newItem);
+			};
 
 		});
 

@@ -16,6 +16,7 @@
           events: '=',
           searchFilter: '=?',
           translationTexts: '=',
+          newItemEvent: '=',
           groupBy: '@'
         },
 
@@ -29,8 +30,14 @@
 	            template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span>  {{texts.checkAll}}</a>';
 	            template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
 	            template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
+
+	            // Search
 	            template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
 	            template += '<li ng-show="settings.enableSearch" class="divider"></li>';
+
+	            // New item
+	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><form ng-submit="newItemEvent(newItem)"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" /></form></li>';
+	            template += '<li ng-show="settings.enableNewItem" class="divider"></li>';
 
           if (groups) {
             template += '<li ng-repeat-start="option in orderedItems | filter: searchFilter" ng-show="getPropertyForObject(option, settings.groupBy) !== getPropertyForObject(orderedItems[$index - 1], settings.groupBy)" role="presentation" class="dropdown-header">{{ getGroupTitle(getPropertyForObject(option, settings.groupBy)) }}</li>';
@@ -88,6 +95,7 @@
               idProp: 'id',
               externalIdProp: 'id',
               enableSearch: false,
+              enableNewItem: false,
               selectionLimit: 0,
               showCheckAll: true,
               showUncheckAll: true,
@@ -105,7 +113,8 @@
               uncheckAll: 'Uncheck All',
               selectionCount: 'checked',
               selectionOf: '/',
-              searchPlaceholder: 'Search...',
+              searchPlaceholder: 'Search',
+              newItemPlaceholder: 'New item',
               buttonDefaultText: 'Select',
               dynamicButtonTextSuffix: 'checked'
           };
