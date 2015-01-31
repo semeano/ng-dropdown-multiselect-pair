@@ -19,7 +19,12 @@
   "license": "MIT",
   "main": "src/ng-dropdown-multiselect.js",
   "ignore": [
-    ".*"
+  	"app",
+  	"dist",
+  	"test",
+    ".*",
+    "Gruntfile.js",
+    "package.json"
   ],
   "dependencies": {
     "angular": "~1.3.0",
