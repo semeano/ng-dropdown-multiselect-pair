@@ -23,7 +23,8 @@
 			};
 
 			$scope.addNewItem = function (newItem) {
-				console.log(newItem);
+				var id = $scope.exampledata.lenght + 1;
+				$scope.exampledata.push({id:id, label:newItem});
 			};
 
 		});
