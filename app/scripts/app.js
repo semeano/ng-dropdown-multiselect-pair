@@ -22,9 +22,11 @@
 				enableNewItem: true
 			};
 
-			$scope.addNewItem = function (newItem) {
-				var id = $scope.exampledata.lenght + 1;
-				$scope.exampledata.push({id:id, label:newItem});
+			$scope.exampleevents = {
+				onNewItemAdd: function (newItem) {
+					var id = $scope.exampledata.lenght + 1;
+					$scope.exampledata.push({id:id, label:newItem});
+				}
 			};
 
 		});

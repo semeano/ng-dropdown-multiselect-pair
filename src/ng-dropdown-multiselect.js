@@ -16,7 +16,6 @@
           events: '=',
           searchFilter: '=?',
           translationTexts: '=',
-          newItemEvent: '=',
           groupBy: '@'
         },
 
@@ -36,7 +35,7 @@
 	            template += '<li ng-show="settings.enableSearch" class="divider"></li>';
 
 	            // New item
-	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><form ng-submit="newItemEvent(newItem)"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" /></form></li>';
+	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><form ng-submit="events.onNewItemAdd(newItem); newItem = \'\';"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" /></form></li>';
 	            template += '<li ng-show="settings.enableNewItem" class="divider"></li>';
 
           if (groups) {
@@ -83,7 +82,8 @@
               onSelectAll: angular.noop,
               onDeselectAll: angular.noop,
               onInitDone: angular.noop,
-              onMaxSelectionReached: angular.noop
+              onMaxSelectionReached: angular.noop,
+              onNewItemAdd: angular.noop
           };
 
           scope.settings = {
@@ -113,7 +113,7 @@
               uncheckAll: 'Uncheck All',
               selectionCount: 'checked',
               selectionOf: '/',
-              searchPlaceholder: 'Search',
+              searchPlaceholder: 'Search...',
               newItemPlaceholder: 'New item',
               buttonDefaultText: 'Select',
               dynamicButtonTextSuffix: 'checked'
