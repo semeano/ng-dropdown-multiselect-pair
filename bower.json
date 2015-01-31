@@ -1,6 +1,6 @@
 {
   "name": "ng-dropdown-multiselect",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "authors": [
     "Pedro Semeano <semeano@gmail.com>"
   ],
@@ -25,6 +25,6 @@
     "angular": "~1.3.0",
     "lodash": "2.4.1",
     "jquery": "~2.1.3",
-    "bootstrap": "3.3.2"
+    "bootstrap": "~3.3.2"
   }
 }
