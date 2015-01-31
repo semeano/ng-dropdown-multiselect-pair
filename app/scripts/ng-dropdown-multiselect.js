@@ -35,7 +35,7 @@
 	            template += '<li ng-show="settings.enableSearch" class="divider"></li>';
 
 	            // New item
-	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><form ng-submit="events.onNewItemAdd(newItem); newItem = \'\';"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" /></form></li>';
+	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" ng-keydown="onNewItemAddKeyDown($event)" /></li>';
 	            template += '<li ng-show="settings.enableNewItem" class="divider"></li>';
 
           if (groups) {
@@ -297,6 +297,13 @@
               }
 
               return _.findIndex(scope.selectedModel, getFindObj(id)) !== -1;
+          };
+
+          scope.onNewItemAddKeyDown = function (event) {
+          	if (event.keyCode === 13) {
+          		scope.events.onNewItemAdd(scope.newItem);
+          		scope.newItem = '';
+          	}
           };
 
           scope.externalEvents.onInitDone();
