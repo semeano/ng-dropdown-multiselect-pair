@@ -28,15 +28,15 @@
 	            template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: (settings.alwaysOpened || open) ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }" style="overflow: scroll" >';
 	            template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span>  {{texts.checkAll}}</a>';
 	            template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
-	            template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
+	            template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll || settings.noSeparators" class="divider"></li>';
 
 	            // Search
 	            template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
-	            template += '<li ng-show="settings.enableSearch" class="divider"></li>';
+	            template += '<li ng-show="settings.enableSearch && !settings.noSeparators" class="divider"></li>';
 
 	            // New item
 	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" ng-keydown="onNewItemAddKeyDown($event)" /></li>';
-	            template += '<li ng-show="settings.enableNewItem" class="divider"></li>';
+	            template += '<li ng-show="settings.enableNewItem && !settings.noSeparators" class="divider"></li>';
 
           if (groups) {
             template += '<li ng-repeat-start="option in orderedItems | filter: searchFilter" ng-show="getPropertyForObject(option, settings.groupBy) !== getPropertyForObject(orderedItems[$index - 1], settings.groupBy)" role="presentation" class="dropdown-header">{{ getGroupTitle(getPropertyForObject(option, settings.groupBy)) }}</li>';
@@ -54,7 +54,7 @@
           }
 
           template += '</li>';
-          template += '<li class="divider" ng-show="settings.selectionLimit > 1"></li>';
+          template += '<li class="divider" ng-show="settings.selectionLimit > 1 && !settings.noSeparators"></li>';
           template += '<li role="presentation" ng-show="settings.selectionLimit > 1"><a role="menuitem">{{selectedModel.length}} {{texts.selectionOf}} {{settings.selectionLimit}} {{texts.selectionCount}}</a></li>';
           template += '</ul>';
           template += '</div>';
@@ -96,6 +96,8 @@
               externalIdProp: 'id',
               enableSearch: false,
               enableNewItem: false,
+              alwaysOpened: false,
+              noSeparators: false,
               selectionLimit: 0,
               showCheckAll: true,
               showUncheckAll: true,
@@ -105,7 +107,8 @@
               groupBy: attributes.groupBy || undefined,
               groupByTextProvider: null,
               smartButtonMaxItems: 0,
-              smartButtonTextConverter: angular.noop
+              smartButtonTextConverter: angular.noop,
+
           };
 
           scope.texts = {

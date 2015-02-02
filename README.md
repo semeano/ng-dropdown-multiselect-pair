@@ -3,8 +3,10 @@
 This package was forked from https://github.com/dotansimha/angularjs-dropdown-multiselect and the only differences from the original are:
 
 - Option (enableNewItem) to show a field to add a new item to the collection, and the respective event call (onNewItemAdd);
-- Option to leave the menu always opened (alwaysOpened);
-- When an item isn't selected, it shows a "cross" glyphicon.
+- Option (alwaysOpened) to leave the menu always opened;
+- When an item isn't selected, it shows a "cross" glyphicon;
+- 'active' class added to the main container so you know when the dropdown list is opened or not (only if you don't use the alwaysOpened setting);
+- Option (noSeparators) to do not show separators.
 
 
 ###Install
@@ -165,6 +167,12 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
               <td>Boolean</td>
               <td>false</td>
               <td>Indicates if the dropdown list should be always opened or not. This ignores any click to close the dropdown list.</td>
+          </tr>
+          <tr>
+              <td>noSeparators</td>
+              <td>Boolean</td>
+              <td>false</td>
+              <td>Indicates if you want separator on the dropdown menu (normally between check all / uncheck / search / new item fields.</td>
           </tr>
           <tr>
               <td>buttonClasses</td>
