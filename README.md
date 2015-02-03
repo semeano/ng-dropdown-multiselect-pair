@@ -7,6 +7,7 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
 - When an item isn't selected, it shows a "cross" glyphicon;
 - 'active' class added to the main container so you know when the dropdown list is opened or not (only if you don't use the alwaysOpened setting);
 - Option (noSeparators) to do not show separators.
+- Added classes (icon-check and icon-uncheck) for the check and uncheck glyphicons, if you don't want to use bootstrap
 
 
 ###Install
