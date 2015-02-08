@@ -8,7 +8,12 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
 - 'active' class added to the main container so you know when the dropdown list is opened or not (only if you don't use the alwaysOpened setting);
 - Option (noSeparators) to do not show separators;
 - Added classes (icon-check and icon-uncheck) for the check and uncheck glyphicons, if you don't want to use bootstrap (only for the menu items);
-- Option (enableEditItem) to enable editing and remove of the items. Also added 2 new events: onItemRemove and onIteOption to enable inline editing and removing itemsdown-multiselect --save
+- Option (enableEditItem) to enable editing and remove of the items. Also added 2 new events: onItemRemove and onIteOption to enable inline editing and removing items. You can also use different icons, just use 'icon-pencil' for the edit button and 'icon-trash' for the delete button.
+
+
+###Install
+
+    bower install ng-dropdown-multiselect --save
 
 
 <div>
