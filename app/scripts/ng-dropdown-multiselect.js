@@ -57,7 +57,7 @@
           template += '<span ng-show="settings.enableEdit" class="glyphicon glyphicon-pencil icon-pencil" ng-click="showEdit($event)"></span>';
 
           // Edit placeholder
-          template += '<div class="edit-item" style="display:none"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keydown="editingOption($event, getPropertyForObject(option,settings.idProp))" />';
+          template += '<div class="edit-item" style="display:none"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingOption($event, getPropertyForObject(option,settings.idProp))" />';
           template += '<span class="glyphicon glyphicon-trash icon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div>';
 
           template += '</li>';
@@ -95,6 +95,7 @@
           		$(event.currentTarget).parent().prev().show();
           		$(event.currentTarget).parent().prev().prev().show();
           		if (event.keyCode === 13) { scope.editOption(id, event.currentTarget.value); }
+          		event.stopPropagation();
           	}
           };
 
