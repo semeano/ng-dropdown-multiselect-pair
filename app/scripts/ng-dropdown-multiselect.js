@@ -45,20 +45,22 @@
             template += '<li class="presentation" role="presentation" ng-repeat="option in options | filter: searchFilter">';
           }
 
-          template += '<a class="menu-item" role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
+          template += '<div class="menu-item">';
 
           if (checkboxes) {
-            template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick(event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></a>';
+            template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick(event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></div>';
           } else {
-            template += '<span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
+            template += '<div class="menu-item-status"><span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span></div>';
           }
 
+          template += '<div class="menu-item-label" role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">{{getPropertyForObject(option, settings.displayProp)}}</div>';
+
           // Edit button
-          template += '<span ng-show="settings.enableEdit" class="glyphicon glyphicon-pencil icon-pencil" ng-click="showEdit($event)"></span>';
+          template += '<div class="menu-item-edit"><span ng-show="settings.enableEdit" class="glyphicon glyphicon-pencil icon-pencil" ng-click="showEdit($event)"></span></div></div>';
 
           // Edit placeholder
-          template += '<div class="edit-item" style="display:none"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingOption($event, getPropertyForObject(option,settings.idProp))" />';
-          template += '<span class="glyphicon glyphicon-trash icon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div>';
+          template += '<div class="edit-item" style="display:none"><div class="edit-item-input"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingOption($event, getPropertyForObject(option,settings.idProp))" /></div>';
+          template += '<div class="edit-item-remove"><span class="glyphicon glyphicon-trash icon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div></div>';
 
           template += '</li>';
           template += '<li class="divider" ng-show="settings.selectionLimit > 1 && !settings.noSeparators"></li>';
@@ -84,16 +86,14 @@
           };
 
           scope.showEdit = function (event) {
-          	$(event.currentTarget).prev().hide();
-          	$(event.currentTarget).hide();
-          	$(event.currentTarget).next().show();
+          	$(event.currentTarget).parent().parent().hide();
+          	$(event.currentTarget).parent().parent().next().show();
           };
 
           scope.editingOption = function (event, id) {
           	if (event.keyCode === 13 || event.keyCode === 27) {
-          		$(event.currentTarget).parent().hide();
-          		$(event.currentTarget).parent().prev().show();
-          		$(event.currentTarget).parent().prev().prev().show();
+          		$(event.currentTarget).parent().parent().hide();
+          		$(event.currentTarget).parent().parent().prev().show();
           		if (event.keyCode === 13) { scope.editOption(id, event.currentTarget.value); }
           		event.stopPropagation();
           	}
