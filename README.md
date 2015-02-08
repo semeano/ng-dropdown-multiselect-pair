@@ -7,12 +7,8 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
 - When an item isn't selected, it shows a "cross" glyphicon;
 - 'active' class added to the main container so you know when the dropdown list is opened or not (only if you don't use the alwaysOpened setting);
 - Option (noSeparators) to do not show separators;
-- Added classes (icon-check and icon-uncheck) for the check and uncheck glyphicons, if you don't want to use bootstrap (only for the menu items).
-
-
-###Install
-
-    bower install ng-dropdown-multiselect --save
+- Added classes (icon-check and icon-uncheck) for the check and uncheck glyphicons, if you don't want to use bootstrap (only for the menu items);
+- Option (enableEditItem) to enable editing and remove of the items. Also added 2 new events: onItemRemove and onIteOption to enable inline editing and removing itemsdown-multiselect --save
 
 
 <div>
@@ -132,6 +128,12 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
               <td>Boolean</td>
               <td>false</td>
               <td>Indicated if to show the new item input or not.</td>
+          </tr>
+          <tr>
+              <td>enableEditItem</td>
+              <td>Boolean</td>
+              <td>false</td>
+              <td>Option to enable inline editing and removing items.</td>
           </tr>
           <tr>
               <td>selectionLimit</td>
@@ -258,6 +260,16 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
               <td>onNewItemAdd</td>
               <td>newItem</td>
               <td>Fired when the user enters a new item on the input field. Requires "enableNewItem" setting to be true.</td>
+          </tr>
+          <tr>
+              <td>onItemEdit</td>
+              <td>id, label</td>
+              <td>Fired when the user edits an item. Arguments: the id and the label of the edited item.</td>
+          </tr>
+          <tr>
+              <td>onItemRemove</td>
+              <td>id</td>
+              <td>Fired when the user removes an item. Arguments: the id of the removed item.</td>
           </tr>
       </tbody>
   </table>

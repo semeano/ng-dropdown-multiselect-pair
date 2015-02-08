@@ -1,0 +1,7 @@
+.presentation {
+	display: inline-flex;
+}
+
+.edit-item input {
+	width: 90%;
+}

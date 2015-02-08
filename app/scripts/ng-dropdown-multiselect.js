@@ -42,16 +42,23 @@
             template += '<li ng-repeat-start="option in orderedItems | filter: searchFilter" ng-show="getPropertyForObject(option, settings.groupBy) !== getPropertyForObject(orderedItems[$index - 1], settings.groupBy)" role="presentation" class="dropdown-header">{{ getGroupTitle(getPropertyForObject(option, settings.groupBy)) }}</li>';
             template += '<li ng-repeat-end role="presentation">';
           } else {
-            template += '<li role="presentation" ng-repeat="option in options | filter: searchFilter">';
+            template += '<li class="presentation" role="presentation" ng-repeat="option in options | filter: searchFilter">';
           }
 
-          template += '<a role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
+          template += '<a class="menu-item" role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
 
           if (checkboxes) {
             template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick(event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></a>';
           } else {
             template += '<span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
           }
+
+          // Edit button
+          template += '<span ng-show="settings.enableEdit" class="glyphicon glyphicon-pencil" ng-click="showEdit($event)"></span>';
+
+          // Edit placeholder
+          template += '<div class="edit-item" style="display:none"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keydown="editingOption($event, getPropertyForObject(option,settings.idProp))" />';
+          template += '<span class="glyphicon glyphicon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div>';
 
           template += '</li>';
           template += '<li class="divider" ng-show="settings.selectionLimit > 1 && !settings.noSeparators"></li>';
@@ -76,6 +83,43 @@
               event.stopImmediatePropagation();
           };
 
+          scope.showEdit = function (event) {
+          	$(event.currentTarget).prev().hide();
+          	$(event.currentTarget).hide();
+          	$(event.currentTarget).next().show();
+          };
+
+          scope.editingOption = function (event, id) {
+          	if (event.keyCode === 13 || event.keyCode === 27) {
+          		$(event.currentTarget).parent().hide();
+          		$(event.currentTarget).parent().prev().show();
+          		$(event.currentTarget).parent().prev().prev().show();
+          		if (event.keyCode === 13) { scope.editOption(id, event.currentTarget.value); }
+          	}
+          };
+
+          scope.editOption = function (id, value) {
+          	_.forEach(scope.options, function (option) {
+          		if (option.id === id) { option.label = value; }
+          	});
+          	if (scope.events.onItemEdit) { scope.events.onItemEdit(id, value); }
+          };
+
+          scope.removeOption = function (event, id) {
+          	$(event.currentTarget).parent().hide();
+          	// Remove from selected options
+          	if (scope.settings.selectionLimit === 1 && scope.selectedModel.id === id) {
+          		scope.selectedModel = {};
+          	}
+          	else if (scope.settings.selectionLimit > 1) {
+          		scope.selectedModel = scope.selectedModel.filter(function (option) { return option.id !== id; });
+          	}
+          	// Remove from options
+          	scope.options = scope.options.filter(function (option) { return option.id !== id; });
+          	// Remove external event
+          	if (scope.events.onItemRemove) { scope.events.onItemRemove(id); }
+          };
+
           scope.externalEvents = {
               onItemSelect: angular.noop,
               onItemDeselect: angular.noop,
@@ -83,7 +127,9 @@
               onDeselectAll: angular.noop,
               onInitDone: angular.noop,
               onMaxSelectionReached: angular.noop,
-              onNewItemAdd: angular.noop
+              onNewItemAdd: angular.noop,
+              onItemEdit: angular.noop,
+              onItemRemove: angular.noop
           };
 
           scope.settings = {
@@ -96,6 +142,7 @@
               externalIdProp: 'id',
               enableSearch: false,
               enableNewItem: false,
+              enableEdit: false,
               alwaysOpened: false,
               noSeparators: false,
               selectionLimit: 0,

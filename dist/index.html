@@ -3,7 +3,7 @@
 		device-width : Occupy full width of the screen in its current orientation
 		initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
 		maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width (wrong for most sites)
-		--> <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net --> <link rel="shortcut icon" href="favicon.ico"> <!-- Vendor CSS --> <link rel="stylesheet" href="styles/vendor.css"> <!-- Custom CSS -->  <body ng-app="ngDropdownMultiselectDemo" ng-cloak> <!--[if lte IE 9]>
+		--> <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net --> <link rel="shortcut icon" href="favicon.ico"> <!-- Vendor CSS --> <link rel="stylesheet" href="styles/vendor.css"> <!-- Custom CSS --> <link rel="stylesheet" href="styles/main.css">  <body ng-app="ngDropdownMultiselectDemo" ng-cloak> <!--[if lte IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]--> <div ng-controller="ngDropdownMultiselectDemoCtrl"> <!-- Simple dropdown --> <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			  <div class="panel panel-default">
@@ -18,6 +18,6 @@
 			      <div class="panel-body"> --> <div ng-dropdown-multiselect="" options="exampledata" selected-model="examplemodel" extra-settings="examplesettings" events="exampleevents"></div> <!-- </div>
 			    </div>
 			  </div>
-		  </div> --> </div> <!-- Github ribbon --> <a href="https://github.com/semeano/angular-dropdown-multiselect"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a> <!--[if lt IE 9]>
+		  </div> --> {{exampledata}} {{examplemodel}} {{asd}} </div> <!-- Github ribbon --> <a href="https://github.com/semeano/angular-dropdown-multiselect"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a> <!--[if lt IE 9]>
     <script src="scripts/oldieshim.d41d8cd9.js"></script>
-    <![endif]--> <script src="scripts/vendor.126c8625.js"></script> <script src="scripts/scripts.4d1e01b3.js"></script>  
+    <![endif]--> <script src="scripts/vendor.126c8625.js"></script> <script src="scripts/scripts.c87e8cfc.js"></script>  

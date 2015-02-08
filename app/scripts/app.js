@@ -10,6 +10,7 @@
 		.controller('ngDropdownMultiselectDemoCtrl', function ($scope) {
 
 			$scope.examplemodel = [];
+			$scope.$watch('examplemodel', function () { $scope.asd = $scope.examplemodel.id; },true);
 			$scope.exampledata = [
 				{id: 1, label: 'David'},
 				{id: 2, label: 'Jhon'},
@@ -19,7 +20,9 @@
 				showUncheckAll: false,
 				dynamicTitle: true,
 				smartButtonMaxItems: 3,
-				enableNewItem: true
+				enableNewItem: false,
+				selectionLimit: 2,
+				enableEdit: true
 			};
 
 			$scope.exampleevents = {
@@ -27,7 +30,13 @@
 					var id = $scope.exampledata.lenght + 1;
 					$scope.exampledata.push({id:id, label:newItem});
 					console.log(newItem);
-				}
+				},
+				// onItemEdit: function (id, label) {
+				// 	// debugger;
+				// },
+				// onItemRemove: function (id) {
+				// 	// debugger;
+				// }
 			};
 
 		});
