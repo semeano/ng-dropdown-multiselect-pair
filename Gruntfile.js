@@ -325,7 +325,7 @@ module.exports = function (grunt) {
       	expand: true,
         dot: true,
         cwd: '<%= yeoman.app %>/scripts',
-    		src: 'ng-dropdown-multiselect.js',
+    		src: 'ng-dropdown-multiselect-pair.js',
         dest: 'src'
       },
       styles: {

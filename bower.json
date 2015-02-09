@@ -1,6 +1,6 @@
 {
   "name": "ng-dropdown-multiselect-pair",
-  "version": "1.5.22",
+  "version": "1.5.23",
   "authors": [
     "Pedro Semeano <semeano@gmail.com>"
   ],
@@ -17,7 +17,7 @@
     "checkbox"
   ],
   "license": "MIT",
-  "main": "src/ng-dropdown-multiselect.js",
+  "main": "src/ng-dropdown-multiselect-pair.js",
   "ignore": [
   	"app",
   	"dist",

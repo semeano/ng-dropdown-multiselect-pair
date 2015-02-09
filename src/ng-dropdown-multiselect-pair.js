@@ -2,9 +2,9 @@
 
 	'use strict';
 
-	angular.module('ng-dropdown-multiselect', [])
+	angular.module('ng-dropdown-multiselect-pair', [])
 
-		.directive('ngDropdownMultiselect', ['$filter', '$document', function ($filter, $document) {
+		.directive('ngDropdownMultiselectPair', ['$filter', '$document', function ($filter, $document) {
 
       return {
         restrict: 'AE',
