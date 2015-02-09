@@ -31,9 +31,9 @@
 					$scope.exampledata.push({id:id, label:newItem});
 					console.log(newItem);
 				},
-				onItemEdit: function (id, label, extra) {
-					debugger;
-				},
+				// onItemEdit: function (id, label, extra) {
+				// 	debugger;
+				// },
 				// onItemRemove: function (id) {
 				// 	// debugger;
 				// }

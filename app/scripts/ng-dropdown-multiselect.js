@@ -61,8 +61,8 @@
 
           // Edit placeholder
           template += '<div class="edit-item" style="display:none">';
-          template += '<div class="edit-item-label"><input type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingLabel($event, getPropertyForObject(option,settings.idProp))" /></div>';
-          template += '<div class="edit-item-extra"><input type="text" ng-value="getPropertyForObject(option, settings.extraProp)" ng-keyup="editingExtra($event, getPropertyForObject(option,settings.idProp))" /></div>';
+          template += '<div class="edit-item-input-label"><input type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingLabel($event, getPropertyForObject(option,settings.idProp))" /></div>';
+          template += '<div class="edit-item-input-extra"><input type="text" ng-value="getPropertyForObject(option, settings.extraProp)" ng-keyup="editingExtra($event, getPropertyForObject(option,settings.idProp))" /></div>';
           template += '<div class="edit-item-remove"><span class="glyphicon glyphicon-trash icon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div></div>';
 
           template += '</li>';

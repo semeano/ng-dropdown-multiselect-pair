@@ -25,17 +25,17 @@
 	display: table-row;
 }
 
-.edit-item-label {
+.edit-item-input-label {
 	display: table-cell;
 }
 
-.edit-item-extra {
+.edit-item-input-extra {
 	display: table-cell;
 	padding-left: 5px;
 	width: 30px;
 }
 
-.edit-item-extra input {
+.edit-item-input-extra input {
 	width: 30px;
 }
 

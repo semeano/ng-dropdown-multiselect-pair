@@ -20,7 +20,6 @@
         },
 
         template: function (element, attributes) {
-          var checkboxes = attributes.checkboxes ? true : false;
           var groups = attributes.groupBy ? true : false;
 
           var template =  '<div class="multiselect-parent btn-group dropdown-multiselect" ng-class="{active: open && !settings.alwaysOpened}">';
@@ -45,21 +44,25 @@
             template += '<li class="presentation" role="presentation" ng-repeat="option in options | filter: searchFilter">';
           }
 
+          // Menu row
           template += '<div class="menu-item">';
 
-          if (checkboxes) {
-            template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick(event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></div>';
-          } else {
-            template += '<div class="menu-item-status"><span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span></div>';
-          }
+          // Status (check / uncheck)
+          template += '<div class="menu-item-status"><span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span></div>';
 
+          // Label
           template += '<div class="menu-item-label" role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">{{getPropertyForObject(option, settings.displayProp)}}</div>';
+
+          // Extra
+          template += '<div class="menu-item-extra" role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">{{getPropertyForObject(option, settings.extraProp)}}</div>';
 
           // Edit button
           template += '<div class="menu-item-edit"><span ng-show="settings.enableEdit" class="glyphicon glyphicon-pencil icon-pencil" ng-click="showEdit($event)"></span></div></div>';
 
           // Edit placeholder
-          template += '<div class="edit-item" style="display:none"><div class="edit-item-input"><input ng-attr-id="getPropertyForObject(option,settings.idProp)" type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingOption($event, getPropertyForObject(option,settings.idProp))" /></div>';
+          template += '<div class="edit-item" style="display:none">';
+          template += '<div class="edit-item-input-label"><input type="text" ng-value="getPropertyForObject(option, settings.displayProp)" ng-keyup="editingLabel($event, getPropertyForObject(option,settings.idProp))" /></div>';
+          template += '<div class="edit-item-input-extra"><input type="text" ng-value="getPropertyForObject(option, settings.extraProp)" ng-keyup="editingExtra($event, getPropertyForObject(option,settings.idProp))" /></div>';
           template += '<div class="edit-item-remove"><span class="glyphicon glyphicon-trash icon-trash" ng-click="removeOption($event, getPropertyForObject(option,settings.idProp))"</span></div></div>';
 
           template += '</li>';
@@ -90,20 +93,40 @@
           	$(event.currentTarget).parent().parent().next().show();
           };
 
-          scope.editingOption = function (event, id) {
+          scope.editingLabel = function (event, id) {
           	if (event.keyCode === 13 || event.keyCode === 27) {
           		$(event.currentTarget).parent().parent().hide();
           		$(event.currentTarget).parent().parent().prev().show();
-          		if (event.keyCode === 13) { scope.editOption(id, event.currentTarget.value); }
+          		if (event.keyCode === 13) {
+          			var label = event.currentTarget.value;
+          			var extra = $(event.currentTarget).parent().next().children().val();
+          			scope.editOption(id, label, extra);
+          		}
           		event.stopPropagation();
           	}
           };
 
-          scope.editOption = function (id, value) {
+          scope.editingExtra = function (event, id) {
+          	if (event.keyCode === 13 || event.keyCode === 27) {
+          		$(event.currentTarget).parent().parent().hide();
+          		$(event.currentTarget).parent().parent().prev().show();
+          		if (event.keyCode === 13) {
+          			var label = $(event.currentTarget).parent().prev().children().val();
+          			var extra = event.currentTarget.value;
+          			scope.editOption(id, label, extra);
+          		}
+          		event.stopPropagation();
+          	}
+          };
+
+          scope.editOption = function (id, label, extra) {
           	_.forEach(scope.options, function (option) {
-          		if (option.id === id) { option.label = value; }
+          		if (option.id === id) {
+          			option.label = label;
+          			option.extra = extra;
+          		}
           	});
-          	if (scope.events.onItemEdit) { scope.events.onItemEdit(id, value); }
+          	if (scope.events.onItemEdit) { scope.events.onItemEdit(id, label, extra); }
           };
 
           scope.removeOption = function (event, id) {
@@ -140,6 +163,7 @@
               closeOnBlur: true,
               displayProp: 'label',
               idProp: 'id',
+              extraProp: 'extra',
               externalIdProp: 'id',
               enableSearch: false,
               enableNewItem: false,
