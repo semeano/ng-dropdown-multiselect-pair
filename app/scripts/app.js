@@ -12,9 +12,9 @@
 			$scope.examplemodel = [];
 			$scope.$watch('examplemodel', function () { $scope.asd = $scope.examplemodel.id; },true);
 			$scope.exampledata = [
-				{id: 1, label: 'David'},
-				{id: 2, label: 'Jhon'},
-				{id: 3, label: 'Danny'}];
+				{id: 1, label: 'David', extra: 34 },
+				{id: 2, label: 'Jhon', extra: 22 },
+				{id: 3, label: 'Danny', extra: 27 }];
 			$scope.examplesettings = {
 				showCheckAll: false,
 				showUncheckAll: false,
@@ -31,9 +31,9 @@
 					$scope.exampledata.push({id:id, label:newItem});
 					console.log(newItem);
 				},
-				// onItemEdit: function (id, label) {
-				// 	// debugger;
-				// },
+				onItemEdit: function (id, label, extra) {
+					debugger;
+				},
 				// onItemRemove: function (id) {
 				// 	// debugger;
 				// }

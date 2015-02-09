@@ -25,9 +25,18 @@
 	display: table-row;
 }
 
-.edit-item-input {
+.edit-item-label {
+	display: table-cell;
+}
+
+.edit-item-extra {
 	display: table-cell;
 	padding-left: 5px;
+	width: 30px;
+}
+
+.edit-item-extra input {
+	width: 30px;
 }
 
 .edit-item-remove {

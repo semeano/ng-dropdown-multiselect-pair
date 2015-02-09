@@ -1,19 +1,11 @@
-#AngularJS Dropdown Multiselect
+#AngularJS Dropdown Multiselect (for a "pair")
 
-This package was forked from https://github.com/dotansimha/angularjs-dropdown-multiselect and the only differences from the original are:
-
-- Option (enableNewItem) to show a field to add a new item to the collection, and the respective event call (onNewItemAdd);
-- Option (alwaysOpened) to leave the menu always opened;
-- When an item isn't selected, it shows a "cross" glyphicon;
-- 'active' class added to the main container so you know when the dropdown list is opened or not (only if you don't use the alwaysOpened setting);
-- Option (noSeparators) to do not show separators;
-- Added classes (icon-check and icon-uncheck) for the check and uncheck glyphicons, if you don't want to use bootstrap (only for the menu items);
-- Option (enableEditItem) to enable editing and remove of the items. Also added 2 new events: onItemRemove and onIteOption to enable inline editing and removing items. You can also use different icons, just use 'icon-pencil' for the edit button and 'icon-trash' for the delete button.
+This package was forked from https://github.com/semeano/ng-dropdown-multiselect and the main difference is that the dropdown menu list is composed by a pair of values. In the example app I'm using person names and ages, but you can use whatever you want.
 
 
 ###Install
 
-    bower install ng-dropdown-multiselect --save
+    bower install ng-dropdown-multiselect-pair --save
 
 
 <div>
@@ -64,12 +56,6 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
               </td>
               <td>String</td>
               <td>The name of the property which you like to group by your options. See grouping example.</td>
-          </tr>
-          <tr>
-              <td><strong>checkboxes</strong>
-              </td>
-              <td>Boolean</td>
-              <td>Indicated if to show a normal dropdown with glyphicons or HTML checkboxes.</td>
           </tr>
           <tr>
               <td><strong>search-filter</strong>
@@ -268,8 +254,8 @@ This package was forked from https://github.com/dotansimha/angularjs-dropdown-mu
           </tr>
           <tr>
               <td>onItemEdit</td>
-              <td>id, label</td>
-              <td>Fired when the user edits an item. Arguments: the id and the label of the edited item.</td>
+              <td>id, label, extra</td>
+              <td>Fired when the user edits an item. Arguments: the id, the label and the extra value of the edited item.</td>
           </tr>
           <tr>
               <td>onItemRemove</td>
