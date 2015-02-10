@@ -20,15 +20,15 @@
 				showUncheckAll: false,
 				dynamicTitle: true,
 				smartButtonMaxItems: 3,
-				enableNewItem: false,
+				enableNewItem: true,
 				selectionLimit: 2,
 				enableEdit: true
 			};
 
 			$scope.exampleevents = {
-				onNewItemAdd: function (newItem) {
-					var id = $scope.exampledata.lenght + 1;
-					$scope.exampledata.push({id:id, label:newItem});
+				onNewItemAdd: function (newItemLabel, newItemExtra) {
+					var id = $scope.exampledata.length + 1;
+					$scope.exampledata.push({id:id, label:newItemLabel, extra:newItemExtra});
 					console.log(newItem);
 				},
 				// onItemEdit: function (id, label, extra) {
