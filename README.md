@@ -302,7 +302,7 @@ This package was forked from https://github.com/semeano/ng-dropdown-multiselect 
           </tr>
           <tr>
               <td>newItemPlaceholder</td>
-              <td>New item</td>
+              <td>['New item','Value']</td>
               <td>The placeholder for the new item input.</td>
           </tr>
           <tr>

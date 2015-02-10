@@ -11,10 +11,12 @@
 
 			$scope.examplemodel = [];
 			$scope.$watch('examplemodel', function () { $scope.asd = $scope.examplemodel.id; },true);
+
 			$scope.exampledata = [
 				{id: 1, label: 'David', extra: 34 },
 				{id: 2, label: 'Jhon', extra: 22 },
 				{id: 3, label: 'Danny', extra: 27 }];
+
 			$scope.examplesettings = {
 				showCheckAll: false,
 				showUncheckAll: false,
@@ -38,6 +40,8 @@
 				// 	// debugger;
 				// }
 			};
+
+			$scope.exampletexts = { newItemPlaceholder: ['Name', 'Age'] };
 
 		});
 

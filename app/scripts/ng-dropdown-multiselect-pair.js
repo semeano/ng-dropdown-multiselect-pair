@@ -34,7 +34,7 @@
 	            template += '<li ng-show="settings.enableSearch && !settings.noSeparators" class="divider"></li>';
 
 	            // New item
-	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><div class="dropdown-header-new-item-label"><input type="text" class="form-control" ng-model="newItemLabel" placeholder="{{texts.newItemPlaceholder}}" ng-keydown="onNewItemAddKeyDown($event)" /></div><div class="dropdown-header-new-item-extra"><input type="text" class="form-control" ng-model="newItemExtra" ng-keydown="onNewItemAddKeyDown($event)" /></div></div></li>';
+	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><div class="dropdown-header-new-item-label"><input type="text" class="form-control" ng-model="newItemLabel" placeholder="{{texts.newItemPlaceholder[0]}}" ng-keydown="onNewItemAddKeyDown($event)" /></div><div class="dropdown-header-new-item-extra"><input type="text" class="form-control" ng-model="newItemExtra" placeholder="{{texts.newItemPlaceholder[1]}}" ng-keydown="onNewItemAddKeyDown($event)" /></div></div></li>';
 	            template += '<li ng-show="settings.enableNewItem && !settings.noSeparators" class="divider"></li>';
 
           if (groups) {
@@ -189,7 +189,7 @@
               selectionCount: 'checked',
               selectionOf: '/',
               searchPlaceholder: 'Search...',
-              newItemPlaceholder: 'New item',
+              newItemPlaceholder: ['New item','Value'],
               buttonDefaultText: 'Select',
               dynamicButtonTextSuffix: 'checked'
           };
