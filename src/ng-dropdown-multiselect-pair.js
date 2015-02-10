@@ -34,7 +34,7 @@
 	            template += '<li ng-show="settings.enableSearch && !settings.noSeparators" class="divider"></li>';
 
 	            // New item
-	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="newItem" placeholder="{{texts.newItemPlaceholder}}" ng-keydown="onNewItemAddKeyDown($event)" /></li>';
+	            template += '<li ng-show="settings.enableNewItem"><div class="dropdown-header"><div class="dropdown-header-new-item-label"><input type="text" class="form-control" ng-model="newItemLabel" placeholder="{{texts.newItemPlaceholder}}" ng-keydown="onNewItemAddKeyDown($event)" /></div><div class="dropdown-header-new-item-extra"><input type="text" class="form-control" ng-model="newItemExtra" ng-keydown="onNewItemAddKeyDown($event)" /></div></div></li>';
 	            template += '<li ng-show="settings.enableNewItem && !settings.noSeparators" class="divider"></li>';
 
           if (groups) {
@@ -376,8 +376,9 @@
 
           scope.onNewItemAddKeyDown = function (event) {
           	if (event.keyCode === 13) {
-          		scope.events.onNewItemAdd(scope.newItem);
-          		scope.newItem = '';
+          		scope.events.onNewItemAdd(scope.newItemLabel, scope.newItemExtra);
+          		scope.newItemLabel = '';
+          		scope.newItemExtra = '';
           	}
           };
 
