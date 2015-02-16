@@ -380,6 +380,7 @@
           		scope.events.onNewItemAdd(scope.newItemLabel, scope.newItemExtra);
           		scope.newItemLabel = '';
           		scope.newItemExtra = '';
+          		event.preventDefault();
           	}
           };
 
