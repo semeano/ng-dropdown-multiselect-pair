@@ -45,7 +45,7 @@
           }
 
           // Menu row
-          template += '<div class="menu-item"> ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))"';
+          template += '<div class="menu-item" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
 
           // Status (check / uncheck)
           template += '<div class="menu-item-status"><span class="glyphicon" data-ng-class="{\'glyphicon-ok icon-check\': isChecked(getPropertyForObject(option,settings.idProp)), \'glyphicon-remove icon-uncheck\': !isChecked(getPropertyForObject(option,settings.idProp))}"></span></div>';
