@@ -1,6 +1,6 @@
 {
   "name": "ng-dropdown-multiselect-pair",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
