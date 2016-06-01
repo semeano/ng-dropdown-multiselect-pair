@@ -233,7 +233,7 @@ This package was forked from https://github.com/semeano/ng-dropdown-multiselect 
               <td>Fired when clicking select all.</td>
           </tr>
           <tr>
-              <td>onUnselectAll</td>
+              <td>onDeselectAll</td>
               <td></td>
               <td>Fired when clicking unselect all.</td>
           </tr>
